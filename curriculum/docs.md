@@ -14,6 +14,17 @@
     - The six constraints
 
 ### Section 2 - A simple API - Pet Store
+#### 2.1 Set up core environment
+- Docker client for Mac
+- Docker compose
+- Check out the Git repo
+
+#### 2.2 Our first GET/POST
+- Using Flask pluggable views
+    - Explain Flask [pluggable views](http://flask.pocoo.org/docs/0.11/views/)
+- Our first endpoint, /pets
+    - A simple GET/POST pluggable view
+    - Using [Postman](https://www.getpostman.com/)
 
 ### Section 3 - Using Flask-Restful
 
