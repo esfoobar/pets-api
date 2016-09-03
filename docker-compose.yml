@@ -1,0 +1,13 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - /opt/flaskbook-api:/opt/flaskbook-api
+    links:
+      - db:mongodb
+    container_name: flaskbookapi_web_1
+  db:
+    image: mongo:3.0.2
