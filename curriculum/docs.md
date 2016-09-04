@@ -26,6 +26,9 @@
     - A simple GET/POST pluggable view
     - Using [Postman](https://www.getpostman.com/)
 
+#### 2.3 Returning JSON
+- Add jsonify to functions
+
 ### Section 3 - Using Flask-Restful
 
 ### Section 4 - The FlaskBook API
