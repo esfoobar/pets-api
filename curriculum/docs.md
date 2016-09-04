@@ -15,8 +15,9 @@
 
 ### Section 2 - A simple API - Pet Store
 #### 2.1 Set up core environment
+- Using Cloud9
 - Docker client for Mac
-- Docker compose
+    - Docker compose
 - Check out the Git repo
 
 #### 2.2 Our first GET/POST
@@ -31,11 +32,10 @@
     - Add the 201 to the response
     - Resend the request on Postman
 
-### 2.3 GET individual pet and practicing HATEOAS
-    - Build a GET id pet endpoint
-
-#### 2.3 Returning JSON
-- Add jsonify to functions
+#### 2.3 A Real CRUD
+- Build a GET individual pet endpoint
+- Add location to all pets (HATEOAS)
+- Implement PUT, DELETE on pets
 
 ### Section 3 - Using Flask-Restful
 
