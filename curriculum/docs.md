@@ -23,8 +23,16 @@
 - Using Flask pluggable views
     - Explain Flask [pluggable views](http://flask.pocoo.org/docs/0.11/views/)
 - Our first endpoint, /pets
-    - A simple GET/POST pluggable view
+    - A simple GET pluggable view
     - Using [Postman](https://www.getpostman.com/)
+    - A simple POST handler (without 201)
+- On the POST we should return a 201
+    - Talk about [HTTP Codes](http://www.restapitutorial.com/httpstatuscodes.html)
+    - Add the 201 to the response
+    - Resend the request on Postman
+
+### 2.3 GET individual pet and practicing HATEOAS
+    - Build a GET id pet endpoint
 
 #### 2.3 Returning JSON
 - Add jsonify to functions
