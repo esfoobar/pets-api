@@ -19,11 +19,11 @@ enabled=1" >> /etc/yum.repos.d/mongodb-org-3.0.repo
 RUN yum install -y mongodb-org; yum clean all
 RUN curl -O https://bootstrap.pypa.io/get-pip.py
 RUN /usr/bin/python3.4 get-pip.py
-RUN mkdir /opt/flaskbook-api
-WORKDIR /opt/flaskbook-api
-ADD requirements.txt /opt/flaskbook-api/
+RUN mkdir /opt/pets-api
+WORKDIR /opt/pets-api
+ADD requirements.txt /opt/pets-api/
 RUN python3 -m pip install -r requirements.txt
-ADD . /opt/flaskbook-api
+ADD . /opt/pets-api
 
 # start the app server
 CMD python3 manage.py runserver
