@@ -15,7 +15,7 @@
 
 ### Section 2 - A simple API - Pet Store
 #### 2.1 Set up core environment
-- Using Cloud9
+- Using Cloud9 or Docker Client
 - Docker client for Mac
     - Docker compose
 - Check out the Git repo
@@ -36,6 +36,13 @@
 - Build a GET individual pet endpoint
 - Add location to all pets (HATEOAS)
 - Implement PUT, DELETE on pets
+
+#### 2.4 Simple Authentication
+- Write a decorator to allow the user to access the API
+- Add authentication to headers in Postman
+
+#### 2.5 An Example Client
+- Do it in Python or JavaScript?
 
 ### Section 3 - Using Flask-Restful
 
