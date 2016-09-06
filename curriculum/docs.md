@@ -42,9 +42,9 @@
 - Add authentication to headers in Postman
 
 #### 2.5 Using MongoDB for our application
-- Write a model for pets with more fields
-- Validation of data using [Flask-Inputs](http://pythonhosted.org/Flask-Inputs/)
 - Token-based application access
+- Write a model for pets with more fields
+- Validation of data using [jsonschema](https://pypi.python.org/pypi/jsonschema)
 
 #### 2.6 An Example Frontend Client
 - Using jQuery

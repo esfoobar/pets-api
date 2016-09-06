@@ -4,8 +4,8 @@ from store.models import Store
 
 class Pet(db.Document):
     name = db.StringField(db_field="n")
-    species = db.ReferenceField(db_field="s")
-    breed = db.ReferenceField(db_field="b")
+    species = db.ReferenceField(Species, db_field="s")
+    breed = db.ReferenceField(Breed, db_field="b")
     age = db.IntField(db_field="a")
     price = db.DecimalField(db_field="p", precision=2, rounding='ROUND_HALF_UP')
     sold = db.BooleanField(db_field="sl", default=False)
@@ -14,7 +14,7 @@ class Pet(db.Document):
 
 class Breed(db.Document):
     name = db.StringField(db_field="n")
-    species = db.ReferenceField(db_field="s")
+    species = db.ReferenceField(Species, db_field="s")
 
 class Species(db.Document):
     name = db.StringField(db_field="n")
