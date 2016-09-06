@@ -7,12 +7,6 @@ class PetAPI(MethodView):
 
     decorators = [app_required]
 
-    pets = [
-        { "id": 1, "name": u"Mac", "links": [ {"rel": "self", "href": "/pets/1"} ] },
-        { "id": 2, "name": u"Leo", "links": [ {"rel": "self", "href": "/pets/2"} ] },
-        { "id": 3, "name": u"Brownie", "links": [ {"rel": "self", "href": "/pets/3"} ] }
-    ]
-
     def get(self, pet_id):
         if pet_id:
             return jsonify({"pet": self.pets[pet_id - 1]})

@@ -41,8 +41,13 @@
 - Write a decorator to allow the user to access the API
 - Add authentication to headers in Postman
 
-#### 2.5 An Example Client
-- Do it in Python or JavaScript?
+#### 2.5 Using MongoDB for our application
+- Write a model for pets with more fields
+- Validation of data using [Flask-Inputs](http://pythonhosted.org/Flask-Inputs/)
+- Token-based application access
+
+#### 2.6 An Example Frontend Client
+- Using jQuery
 
 ### Section 3 - Using Flask-Restful
 
