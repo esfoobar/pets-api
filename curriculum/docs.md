@@ -41,10 +41,12 @@
 - Write a decorator to allow the user to access the API
 - Add authentication to headers in Postman
 
-#### 2.5 Using MongoDB for our application
+#### 2.5 Token Based authentication
 - Create the app registration endpoint
 - Create the token generator
 - Build the token-based application access decorator
+
+#### 2.6 More Complete Pet Models
 - Write a model for pets with more fields
 - Validation of data using [jsonschema](https://pypi.python.org/pypi/jsonschema)
 
