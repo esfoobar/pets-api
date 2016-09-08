@@ -42,7 +42,9 @@
 - Add authentication to headers in Postman
 
 #### 2.5 Using MongoDB for our application
-- Token-based application access
+- Create the app registration endpoint
+- Create the token generator
+- Build the token-based application access decorator
 - Write a model for pets with more fields
 - Validation of data using [jsonschema](https://pypi.python.org/pypi/jsonschema)
 

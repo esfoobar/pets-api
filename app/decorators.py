@@ -1,15 +1,24 @@
 from functools import wraps
 from flask import request, jsonify
 
+from app.models import Access
+
 def app_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if request.headers.get('X-APP-ID') is None:
-            return jsonify({}), 403
         app_id = request.headers.get('X-APP-ID')
-        app_secret = request.headers.get('X-APP-SECRET')
-        print(app_id, app_secret)
-        if app_id != "jorge" or app_secret != "mySecret":
+        app_token = request.headers.get('X-APP-TOKEN')
+
+        if app_id is None or app_token is None:
             return jsonify({}), 403
+
+        access = Access.objects.filter(app_id=app_id).first()
+        if not access:
+            return jsonify({}), 403
+        if access.token != app_token:
+            return jsonify({}), 403
+        if access.expires > datetime.datetime.now():
+            return jsonify({}), 403
+
         return f(*args, **kwargs)
     return decorated_function
