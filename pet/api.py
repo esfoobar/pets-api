@@ -2,35 +2,25 @@ from flask.views import MethodView
 from flask import jsonify, request, abort
 
 from app.decorators import app_required
+from pet.models import Pet
 
 class PetAPI(MethodView):
 
     decorators = [app_required]
 
+    def __init__(self):
+        if request.method != 'GET' and not request.json:
+            abort(400)
+
     def get(self, pet_id):
-        if pet_id:
-            return jsonify({"pet": self.pets[pet_id - 1]})
-        else:
-            return jsonify({"pets": self.pets})
+        print("here")
+        return jsonify({"pets": []}), 200
 
     def post(self):
-        if not request.json or not 'name' in request.json:
-            abort(400)
-        pet = {
-            "id": len(self.pets) + 1,
-            "name": request.json["name"],
-            "location": "/pets/" + str(len(self.pets) + 1)
-        }
-        self.pets.append(pet)
-        return jsonify({'pet': pet}), 201
+        pass
 
     def put(self, pet_id):
-        if not request.json or not 'name' in request.json:
-            abort(400)
-        pet = self.pets[pet_id - 1]
-        pet["name"] = request.json["name"]
-        return jsonify({'pet': pet}), 200
+        pass
 
     def delete(self, pet_id):
-        del self.pets[pet_id - 1]
-        return jsonify({}), 204
+        pass

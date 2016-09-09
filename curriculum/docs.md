@@ -46,6 +46,9 @@
 - Create the token generator
 - Build the token-based application access decorator
 
+#### 2.6 Authentication Testing
+- Start a testing framework
+
 #### 2.6 More Complete Pet Models
 - Write a model for pets with more fields
 - Validation of data using [jsonschema](https://pypi.python.org/pypi/jsonschema)
