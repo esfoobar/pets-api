@@ -40,6 +40,7 @@ class AccessAPI(MethodView):
                 "code": "MISSING_APP_ID_OR_APP_SECRET"
             }
             return jsonify({'error': error}), 400
+
         app = App.objects.filter(app_id=request.json.get('app_id')).first()
         if not app:
             error = {
