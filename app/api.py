@@ -18,6 +18,12 @@ class AppAPI(MethodView):
                 "code": "MISSING_APP_ID_OR_APP_SECRET"
             }
             return jsonify({'error': error}), 400
+        existing_app = App.objects.filter(app_id=request.json.get('app_id')).first()
+        if existing_app:
+            error = {
+                "code": "APP_ID_ALREADY_EXISTS"
+            }
+            return jsonify({'error': error}), 400
         else:
             # create the credentials
             salt = bcrypt.gensalt()

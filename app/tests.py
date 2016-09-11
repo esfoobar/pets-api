@@ -47,6 +47,12 @@ class AppTest(unittest.TestCase):
             content_type='application/json')
         assert "MISSING_APP_ID_OR_APP_SECRET" in str(rv.data)
 
+        # repeat registration
+        rv = self.app.post('/apps/',
+            data=self.app_dict(),
+            content_type='application/json')
+        assert "APP_ID_ALREADY_EXISTS" in str(rv.data)
+
     def test_token_generation(self):
         rv = self.app.post('/apps/',
             data=self.app_dict(),
@@ -96,4 +102,4 @@ class AppTest(unittest.TestCase):
         assert rv.status_code == 403
 
         # TODO
-        # EXPIRED TOKEN 
+        # EXPIRED TOKEN
