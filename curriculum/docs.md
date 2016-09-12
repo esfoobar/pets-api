@@ -51,7 +51,9 @@
 
 #### 2.6 More Complete Pet Models
 - Write a model for pets with more fields
-- Validation of data using [jsonschema](https://pypi.python.org/pypi/jsonschema)
+- Don't expose MongoDB ID, use uuid
+- Validation of data using [jsonschema](http://python-jsonschema.readthedocs.io/en/latest/)
+  - [Great resource](https://spacetelescope.github.io/understanding-json-schema/index.html) to understanding it
 
 #### 2.6 An Example Frontend Client
 - Using jQuery

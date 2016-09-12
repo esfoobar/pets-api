@@ -2,6 +2,7 @@ from application import create_app as create_app_base
 from mongoengine.connection import _get_db
 import unittest
 import json
+from datetime import datetime, timedelta
 
 from app.models import App, Access
 from settings import MONGODB_HOST
@@ -101,5 +102,15 @@ class AppTest(unittest.TestCase):
             content_type='application/json')
         assert rv.status_code == 403
 
-        # TODO
-        # EXPIRED TOKEN
+        # test expired token
+        now = datetime.utcnow().replace(second=0, microsecond=0)
+        expires = now + timedelta(days=-31)
+        access = Access.objects.first()
+        access.expires = expires
+        access.save()
+        rv = self.app.get('/pets/',
+            headers={
+                'X-APP-ID': 'pet_client',
+                'X-APP-TOKEN': token},
+            content_type='application/json')
+        assert "TOKEN_EXPIRED" in str(rv.data)
