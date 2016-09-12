@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify, g
 import datetime
 
 from app.models import App, Access
@@ -24,6 +24,9 @@ def app_required(f):
             return jsonify({}), 403
         if access.expires < datetime.datetime.utcnow():
             return jsonify({'error': "TOKEN_EXPIRED"}), 403
+
+        # store the current app on the g object
+        g.app = app
 
         return f(*args, **kwargs)
     return decorated_function

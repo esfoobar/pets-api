@@ -1,5 +1,5 @@
 from flask.views import MethodView
-from flask import jsonify, request, abort
+from flask import jsonify, request, abort, g
 
 from app.decorators import app_required
 from pet.models import Pet
@@ -13,7 +13,6 @@ class PetAPI(MethodView):
             abort(400)
 
     def get(self, pet_id):
-        print("here")
         return jsonify({"pets": []}), 200
 
     def post(self):
