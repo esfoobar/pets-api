@@ -49,11 +49,12 @@
 #### 2.6 Authentication Testing
 - Start a testing framework
 
-#### 2.6 Work on Store API
+#### 2.7 Work on Store API
 - Build store models
 - Don't expose MongoDB ID, use uuid
 - Validation of data using [jsonschema](http://python-jsonschema.readthedocs.io/en/latest/)
   - [Great resource](https://spacetelescope.github.io/understanding-json-schema/index.html) to understanding it
+- Build JSON templates
 
 #### 2.6 An Example Frontend Client
 - Using jQuery
