@@ -33,7 +33,7 @@ class StoreAPI(MethodView):
             stores = Store.objects.all()
             response = {
                 "result": "ok",
-                "stores": stores_obj(store)
+                "stores": stores_obj(stores)
             }
             return jsonify(response), 200
 
