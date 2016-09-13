@@ -32,7 +32,7 @@ class AppAPI(MethodView):
                 app_id=request.json.get('app_id'),
                 app_secret=hashed_password
             ).save()
-            return jsonify({'result': 'ok'})
+            return jsonify({"result": "ok"})
 
 class AccessAPI(MethodView):
 
@@ -52,7 +52,7 @@ class AccessAPI(MethodView):
             error = {
                 "code": "INCORRECT_CREDENTIALS"
             }
-            return jsonify({'error': error}), 403
+            return jsonify({"error": error}), 403
         else:
             # generate a token
             if bcrypt.hashpw(request.json.get('app_secret'), app.app_secret) == app.app_secret:
@@ -67,10 +67,10 @@ class AccessAPI(MethodView):
                     expires=expires
                 ).save()
                 expires_3339 = expires.isoformat("T") + "Z"
-                return jsonify({'token': token, 'expires': expires_3339}), 200
+                return jsonify({"token": token, "expires": expires_3339}), 200
             else:
                 error = {
                     "code": "INCORRECT_CREDENTIALS"
                 }
-                return jsonify({'error': error}), 403
-            return jsonify({'result': 'ok'})
+                return jsonify({"error": error}), 403
+            return jsonify({"result": "ok"})

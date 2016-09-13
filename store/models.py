@@ -1,3 +1,5 @@
+from mongoengine import signals
+
 from application import db
 
 class Store(db.Document):
