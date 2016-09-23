@@ -59,8 +59,14 @@
 ### 2.8 Store PUT and DELETE
 - PUT operations are the update of CRUD. It generally receives all the fields with the ones being updated changed.
   - PATCH is used for updating only specific fields (we won't implement)
+- Implement DELETE
 
-### 2.9 Store Testing
+### 2.9 Implement GET all stores
+- Pagination
+  - Results should always be paginated
+  - Links within show next and prev
+
+### 2.10 Store Testing
 
 #### 2.6 An Example Frontend Client
 - Using jQuery
