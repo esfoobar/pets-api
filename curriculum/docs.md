@@ -56,6 +56,12 @@
   - [Great resource](https://spacetelescope.github.io/understanding-json-schema/index.html) to understanding it
 - Build JSON templates
 
+### 2.8 Store PUT and DELETE
+- PUT operations are the update of CRUD. It generally receives all the fields with the ones being updated changed.
+  - PATCH is used for updating only specific fields (we won't implement)
+
+### 2.9 Store Testing
+
 #### 2.6 An Example Frontend Client
 - Using jQuery
 
