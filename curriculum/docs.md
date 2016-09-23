@@ -56,6 +56,10 @@
   - [Great resource](https://spacetelescope.github.io/understanding-json-schema/index.html) to understanding it
 - Build JSON templates
 
+### 2.8 Store PUT and DELETE
+
+### 2.9 Store Testing
+
 #### 2.6 An Example Frontend Client
 - Using jQuery
 
