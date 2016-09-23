@@ -46,15 +46,6 @@
 - Create the token generator
 - Build the token-based application access decorator
 
-#### 2.6 Authentication Testing
-- Start a testing framework
-
-#### 2.6 More Complete Pet Models
-- Write a model for pets with more fields
-- Don't expose MongoDB ID, use uuid
-- Validation of data using [jsonschema](http://python-jsonschema.readthedocs.io/en/latest/)
-  - [Great resource](https://spacetelescope.github.io/understanding-json-schema/index.html) to understanding it
-
 #### 2.6 An Example Frontend Client
 - Using jQuery
 
