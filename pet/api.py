@@ -22,4 +22,4 @@ class PetAPI(MethodView):
         pass
 
     def delete(self, pet_id):
-        pass
+        return jsonify({})

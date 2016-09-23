@@ -15,7 +15,7 @@ class StoreAPI(MethodView):
     decorators = [app_required]
 
     def __init__(self):
-        if request.method != 'GET' and not request.json:
+        if (request.method != 'GET' and request.method != 'DELETE') and not request.json:
             abort(400)
 
     def get(self, store_id):
@@ -81,11 +81,9 @@ class StoreAPI(MethodView):
             return jsonify(response), 200
 
     def delete(self, store_id):
-        return jsonify({})
-        # print(store_id)
-        # store = Store.objects.filter(external_id=store_id, live=True).first()
-        # if not store:
-        #     return jsonify({}), 404
-        # store.live = False
-        # store.save()
-        # return jsonify({}), 204
+        store = Store.objects.filter(external_id=store_id, live=True).first()
+        if not store:
+            return jsonify({}), 404
+        store.live = False
+        store.save()
+        return jsonify({}), 204
