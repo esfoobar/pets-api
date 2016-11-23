@@ -31,6 +31,8 @@ class StoreAPI(MethodView):
                 return jsonify({}), 404
         else:
             stores = Store.objects.filter(live=True)
+            page = int(request.args.get('page', 1))
+            stores = stores.paginate(page=page, per_page=10)
             response = {
                 "result": "ok",
                 "stores": stores_obj(stores)

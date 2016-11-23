@@ -17,6 +17,7 @@
 - Using Cloud9 or Docker Client
 - Docker client for Mac
     - Docker compose
+    - Running the containers separately for pdb
 - Check out the Git repo
 
 #### 2.2 Our first GET/POST
