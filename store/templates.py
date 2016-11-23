@@ -14,9 +14,6 @@ def store_obj(store):
 
 def stores_obj(stores):
     stores_obj = []
-
     for store in stores:
         stores_obj.append(store_obj(store))
-        print(store.to_json())
-
     return stores_obj

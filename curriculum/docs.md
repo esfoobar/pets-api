@@ -3,7 +3,6 @@
 ### Section 1 - Introduction
 
 #### 1.1 Introduction
-
 - What do we want to accomplish in this course?
 - Prerequisites
 - What do I need to have to complete this course?
@@ -68,9 +67,7 @@
 
 ### 2.10 Store Testing
 
-#### 2.6 An Example Frontend Client
+### Section 3 - Using Swagger to Document your API
+
+#### Bonus - An Example Frontend Client
 - Using jQuery
-
-### Section 3 - Using Flask-Restful
-
-### Section 4 - The FlaskBook API
