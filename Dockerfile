@@ -4,7 +4,7 @@
 #
 
 # Pull base image.
-FROM python:3.4.5
+FROM python:3.4.5-slim
 
 # Get some custom packages
 RUN apt-get update && apt-get install -y \
