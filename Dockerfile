@@ -29,4 +29,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # start the app server
-CMD python3 manage.py runserver
+CMD python manage.py runserver
