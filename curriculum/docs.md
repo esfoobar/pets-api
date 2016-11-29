@@ -65,8 +65,15 @@
 - Pagination
   - Results should always be paginated
   - Links within show next and prev
+  "_links": {
+    "self": { "href": "/orders" },
+    "next": { "href": "/orders?page=2" },
+    "find": { "href": "/orders{?id}", "templated": true }
+  }
 
 ### 2.10 Store Testing
+- Introduction to Fixtures
+  - Use [Flask-Fixtures](https://pypi.python.org/pypi/Flask-Fixtures/0.3.7)
 
 ### Section 3 - Using Swagger to Document your API
 
