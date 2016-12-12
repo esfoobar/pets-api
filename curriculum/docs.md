@@ -65,11 +65,7 @@
 - Pagination
   - Results should always be paginated
   - Links within show next and prev
-  "_links": {
-    "self": { "href": "/orders" },
-    "next": { "href": "/orders?page=2" },
-    "find": { "href": "/orders{?id}", "templated": true }
-  }
+    - This is the HATEOAS of the app
 
 ### 2.10 Store Testing
 - Introduction to Fixtures
