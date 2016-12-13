@@ -105,6 +105,22 @@ class StoreTest(unittest.TestCase):
         assert Store.objects.filter(live=False).count() == 1
 
     def test_pagination(self):
+        # get app up and running
+        self.create_api_app()
+        self.generate_access_token()
+
         # import fixtures
         fixtures(self.db_name, "store", "store/fixtures/stores.json")
-        print(Store.objects.count())
+
+        # get all stores
+        rv = self.app.get('/stores/',
+            headers=self.headers(),
+            content_type='application/json')
+        assert "next" in str(rv.data)
+
+        # get second page of stores
+        rv = self.app.get('/stores/?page=2',
+            headers=self.headers(),
+            content_type='application/json')
+        assert "previous" in str(rv.data)
+        assert "next" in str(rv.data)
