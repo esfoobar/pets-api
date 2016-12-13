@@ -70,7 +70,6 @@
 ### 2.10 Store Testing
 - Introduction to Fixtures
   - Custom fixtures using mongoimport
-  - Need to add mongodb on Dockerfile
 
 ### Section 3 - Using Swagger to Document your API
 

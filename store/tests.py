@@ -23,9 +23,6 @@ class StoreTest(unittest.TestCase):
         self.app_factory = self.create_app()
         self.app = self.app_factory.test_client()
 
-        # import fixtures
-        fixtures(self.db_name, "store", "store/fixtures/stores.json")
-
     def tearDown(self):
         db = _get_db()
         db.client.drop_database(db)
@@ -35,6 +32,16 @@ class StoreTest(unittest.TestCase):
                 app_id="pet_client",
                 app_secret="pet_secret"
                 ))
+
+    def store_dict(self):
+        return json.dumps(dict(
+            neighborhood="Bay Ridge",
+            street_address="1112 Bay Ridge Avenue",
+            city="Brooklyn",
+            state="NY",
+            zip="11209",
+            phone="718-222-2445"
+            ))
 
     def create_api_app(self):
         # create our app
@@ -49,9 +56,24 @@ class StoreTest(unittest.TestCase):
             content_type='application/json')
         self.token = json.loads(rv.data.decode('utf-8')).get('token')
 
-    def test_create_store(self):
+    def headers(self):
+        return {
+            'X-APP-ID': 'pet_client',
+            'X-APP-TOKEN': self.token
+            }
+
+    def test_stores(self):
         # get app up and running
         self.create_api_app()
         self.generate_access_token()
 
-        print(Store.objects.all().count())
+        # create a store
+        rv = self.app.post('/stores/',
+            headers=self.headers(),
+            data=self.store_dict(),
+            content_type='application/json')
+        assert rv.status_code == 201
+
+    def test_pagination(self):
+        # import fixtures
+        fixtures(self.db_name, "store", "store/fixtures/stores.json")
