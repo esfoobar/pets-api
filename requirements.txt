@@ -3,4 +3,3 @@ Flask-Script==2.0.5
 flask-mongoengine==0.7.4
 py-bcrypt==0.4
 jsonschema==2.5.1
-Flask-Fixtures==0.3.7

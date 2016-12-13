@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     make \
     gcc \
-    python3-dev
+    python3-dev \
+    mongodb
 
 ## make a local directory
 RUN mkdir /opt/pets-api

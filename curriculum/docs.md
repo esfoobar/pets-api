@@ -69,7 +69,8 @@
 
 ### 2.10 Store Testing
 - Introduction to Fixtures
-  - Use [Flask-Fixtures](https://pypi.python.org/pypi/Flask-Fixtures/0.3.7)
+  - Custom fixtures using mongoimport
+  - Need to add mongodb on Dockerfile
 
 ### Section 3 - Using Swagger to Document your API
 
