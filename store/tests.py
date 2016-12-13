@@ -107,3 +107,4 @@ class StoreTest(unittest.TestCase):
     def test_pagination(self):
         # import fixtures
         fixtures(self.db_name, "store", "store/fixtures/stores.json")
+        print(Store.objects.count())
