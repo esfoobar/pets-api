@@ -73,6 +73,11 @@
   - Introduction to Fixtures
   - Custom fixtures using mongoimport
 
+### 2.11 The Pet App
+  - Create CRUD
+  - Write Tests
+  - Implementing a simple search
+
 ### Section 3 - Using Swagger to Document your API
 
 #### Bonus - An Example Frontend Client
