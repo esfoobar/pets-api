@@ -72,7 +72,37 @@ class StoreTest(unittest.TestCase):
             headers=self.headers(),
             data=self.store_dict(),
             content_type='application/json')
+        store_id = json.loads(rv.data.decode('utf-8')).get('store')['id']
         assert rv.status_code == 201
+
+        # get a store
+        rv = self.app.get('/stores/' + store_id,
+            headers=self.headers(),
+            content_type='application/json')
+        assert rv.status_code == 200
+
+        # edit a store
+        new_store = json.dumps(dict(
+            neighborhood="Dyker Heights",
+            street_address="55 16th Avenue",
+            city="Brooklyn",
+            state="NY",
+            zip="11215",
+            phone="718-555-5555"
+            ))
+        rv = self.app.put('/stores/' + store_id,
+            headers=self.headers(),
+            data=new_store,
+            content_type='application/json')
+        assert rv.status_code == 200
+        assert json.loads(rv.data.decode('utf-8')).get('store')['phone'] == "718-555-5555"
+
+        # delete a store
+        rv = self.app.delete('/stores/' + store_id,
+            headers=self.headers(),
+            content_type='application/json')
+        assert rv.status_code == 204
+        assert Store.objects.filter(live=False).count() == 1
 
     def test_pagination(self):
         # import fixtures

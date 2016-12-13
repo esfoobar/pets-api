@@ -68,7 +68,9 @@
     - This is the HATEOAS of the app
 
 ### 2.10 Store Testing
-- Introduction to Fixtures
+- Testing CRUD
+- Testing pagination
+  - Introduction to Fixtures
   - Custom fixtures using mongoimport
 
 ### Section 3 - Using Swagger to Document your API
