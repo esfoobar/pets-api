@@ -22,5 +22,5 @@ class Pet(db.Document):
     sold_date = db.DateTimeField(db_field="sd")
 
     meta = {
-        'indexes': [('external_id')]
+        'indexes': [('external_id', 'sold')]
     }
