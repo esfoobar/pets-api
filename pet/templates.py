@@ -1,3 +1,5 @@
+from store.templates import store_obj
+
 def pet_obj(pet):
     return {
       "id":             pet.external_id,
@@ -5,9 +7,9 @@ def pet_obj(pet):
       "species":        pet.species.name,
       "breed":          pet.breed.name,
       "age":            pet.age,
-      "store":          pet.store.external_id,
+      "store":          store_obj(pet.store),
       "price":          str(pet.price),
-      "received_date":  pet.received_date,
+      "received_date":  str(pet.received_date.isoformat()[:19]) +"Z",
       "links": [
         { "rel": "self", "href": "/pets/" + pet.external_id }
       ]

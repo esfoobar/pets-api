@@ -1,8 +1,13 @@
 from flask.views import MethodView
 from flask import jsonify, request, abort, g
+from jsonschema import Draft4Validator
+from jsonschema.exceptions import best_match
+import uuid
+import json
 
 from app.decorators import app_required
 from pet.models import Pet
+from pet.schema import schema
 from pet.templates import pet_obj, pets_obj
 
 class PetAPI(MethodView):
@@ -56,7 +61,26 @@ class PetAPI(MethodView):
             return jsonify(response), 200
 
     def post(self):
-        pass
+        pet_json = request.json
+        error = best_match(Draft4Validator(schema).iter_errors(pet_json))
+        if error:
+            return jsonify({"error": error.message}), 400
+        else:
+            pet = Pet(
+                external_id=str(uuid.uuid4()),
+                name=pet_json.get('name'),
+                species=pet_json.get('species'),
+                breed=pet_json.get('breed'),
+                age=pet_json.get('age'),
+                store=pet_json.get('store'),
+                price=pet_json.get('price'),
+                received_date=pet_json.get('recieved_date')
+            )
+            response = {
+                "result": "ok",
+                "pet": pet_obj(pet)
+            }
+            return jsonify(response), 201
 
     def put(self, pet_id):
         pass
