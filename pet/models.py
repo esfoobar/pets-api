@@ -5,9 +5,17 @@ from store.models import Store
 class Species(db.Document):
     name = db.StringField(db_field="n")
 
+    meta = {
+        'indexes': [('name')]
+    }
+
 class Breed(db.Document):
     name = db.StringField(db_field="n")
     species = db.ReferenceField(Species, db_field="s")
+
+    meta = {
+        'indexes': [('name')]
+    }
 
 class Pet(db.Document):
     external_id = db.StringField(db_field="ei")
