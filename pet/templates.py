@@ -4,8 +4,8 @@ def pet_obj(pet):
     return {
       "id":             pet.external_id,
       "name":           pet.name,
-      "species":        pet.species.name,
-      "breed":          pet.breed.name,
+      "species":        pet.species,
+      "breed":          pet.breed,
       "age":            pet.age,
       "store":          store_obj(pet.store),
       "price":          str(pet.price),

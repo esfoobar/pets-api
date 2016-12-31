@@ -9,6 +9,7 @@ from app.decorators import app_required
 from pet.models import Pet
 from pet.schema import schema
 from pet.templates import pet_obj, pets_obj
+from store.models import Store
 
 class PetAPI(MethodView):
 
@@ -65,6 +66,13 @@ class PetAPI(MethodView):
         error = best_match(Draft4Validator(schema).iter_errors(pet_json))
         if error:
             return jsonify({"error": error.message}), 400
+
+        store = Store.objects.filter(external_id=pet_json.get('store')).first()
+        if not store:
+            error = {
+                "code": "STORE_NOT_FOUND"
+            }
+            return jsonify({'error': error}), 400
         else:
             pet = Pet(
                 external_id=str(uuid.uuid4()),
@@ -72,10 +80,10 @@ class PetAPI(MethodView):
                 species=pet_json.get('species'),
                 breed=pet_json.get('breed'),
                 age=pet_json.get('age'),
-                store=pet_json.get('store'),
+                store=store,
                 price=pet_json.get('price'),
-                received_date=pet_json.get('recieved_date')
-            )
+                received_date=pet_json.get('received_date')
+            ).save()
             response = {
                 "result": "ok",
                 "pet": pet_obj(pet)
