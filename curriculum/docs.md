@@ -75,8 +75,13 @@
 
 ### 2.11 The Pet App
   - Create CRUD
+
+### 2.12 Pet Tests
   - Write Tests
-  - Implementing a simple search
+
+### 2.13 Pet searches
+  - Get all pets in a specific store
+  - Implementing filters across stores
 
 ### Section 3 - Using Swagger to Document your API
 

@@ -4,6 +4,7 @@ from jsonschema import Draft4Validator
 from jsonschema.exceptions import best_match
 import uuid
 import json
+import datetime
 
 from app.decorators import app_required
 from pet.models import Pet
@@ -22,7 +23,7 @@ class PetAPI(MethodView):
 
     def get(self, pet_id):
         if pet_id:
-            pet = Pet.objects.filter(external_id=pet_id, sold=False).first()
+            pet = Pet.objects.filter(external_id=pet_id, live=True).first()
             if pet:
                 response = {
                     "result": "ok",
@@ -32,7 +33,7 @@ class PetAPI(MethodView):
             else:
                 return jsonify({}), 404
         else:
-            pets = Pet.objects.filter(sold=False)
+            pets = Pet.objects.filter(live=True)
             page = int(request.args.get('page', 1))
             pets = pets.paginate(page=page, per_page=self.PETS_PER_PAGE)
             response = {
@@ -73,25 +74,69 @@ class PetAPI(MethodView):
                 "code": "STORE_NOT_FOUND"
             }
             return jsonify({'error': error}), 400
-        else:
-            pet = Pet(
-                external_id=str(uuid.uuid4()),
-                name=pet_json.get('name'),
-                species=pet_json.get('species'),
-                breed=pet_json.get('breed'),
-                age=pet_json.get('age'),
-                store=store,
-                price=pet_json.get('price'),
-                received_date=pet_json.get('received_date')
-            ).save()
-            response = {
-                "result": "ok",
-                "pet": pet_obj(pet)
-            }
-            return jsonify(response), 201
+
+        try:
+            received_date = datetime.datetime.strptime(
+                pet_json.get('received_date'), "%Y-%m-%dT%H:%M:%SZ")
+        except:
+            return jsonify({"error": "INVALID_DATE"}), 400
+
+        pet = Pet(
+            external_id=str(uuid.uuid4()),
+            name=pet_json.get('name'),
+            species=pet_json.get('species'),
+            breed=pet_json.get('breed'),
+            age=pet_json.get('age'),
+            store=store,
+            price=pet_json.get('price'),
+            received_date=received_date
+        ).save()
+        response = {
+            "result": "ok",
+            "pet": pet_obj(pet)
+        }
+        return jsonify(response), 201
 
     def put(self, pet_id):
-        pass
+        pet = Pet.objects.filter(external_id=store_id, live=True).first()
+        if not pet:
+            return jsonify({}), 404
+        pet_json = request.json
+        error = best_match(Draft4Validator(schema).iter_errors(pet_json))
+        if error:
+            return jsonify({"error": error.message}), 400
+
+        store = Store.objects.filter(external_id=pet_json.get('store')).first()
+        if not store:
+            error = {
+                "code": "STORE_NOT_FOUND"
+            }
+            return jsonify({'error': error}), 400
+
+        try:
+            received_date = datetime.datetime.strptime(
+                pet_json.get('received_date'), "%Y-%m-%dT%H:%M:%SZ")
+        except:
+            return jsonify({"error": "INVALID_DATE"}), 400
+
+        pet.name = pet_json.get('name')
+        pet.species = pet_json.get('species')
+        pet.breed = pet_json.get('breed')
+        pet.age = pet_json.get('age')
+        pet.store = store
+        pet.price = pet_json.get('price')
+        pet.received_date = received_date
+        pet.save()
+        response = {
+            "result": "ok",
+            "pet": pet_obj(pet)
+        }
+        return jsonify(response), 200
 
     def delete(self, pet_id):
-        return jsonify({})
+        pet = Pet.objects.filter(external_id=pet_id, live=True).first()
+        if not pet:
+            return jsonify({}), 404
+        pet.live = False
+        pet.save()
+        return jsonify({}), 204

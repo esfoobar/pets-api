@@ -13,7 +13,8 @@ class Pet(db.Document):
     sold = db.BooleanField(db_field="sl", default=False)
     received_date = db.DateTimeField(db_field="rd")
     sold_date = db.DateTimeField(db_field="sd")
+    live = db.BooleanField(db_field="l", default=True)
 
     meta = {
-        'indexes': [('external_id', 'sold'), ('species', 'sold'), ('store', 'sold')]
+        'indexes': [('external_id', 'live'), ('species', 'live'), ('store', 'live')]
     }
