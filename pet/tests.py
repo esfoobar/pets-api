@@ -86,10 +86,40 @@ class PetTest(unittest.TestCase):
         self.store_id = json.loads(rv.data.decode('utf-8')).get('store')['id']
         assert rv.status_code == 201
 
-        # Create a Pet
+        # Create a pet
         rv = self.app.post('/pets/',
             headers=self.headers(),
             data=self.pet_dict(),
             content_type='application/json')
         pet_id = json.loads(rv.data.decode('utf-8')).get('pet')['id']
         assert rv.status_code == 201
+
+        # get a pet
+        rv = self.app.get('/pets/' + pet_id,
+            headers=self.headers(),
+            content_type='application/json')
+        assert rv.status_code == 200
+
+        # edit a pet
+        new_pet = json.dumps(dict(
+            name="Apple",
+            species="Cat",
+            breed="Siamese",
+            age=12,
+            store=self.store_id,
+            price="566.22",
+            received_date="2016-12-11T12:12:01Z"
+            ))
+        rv = self.app.put('/pets/' + pet_id,
+            headers=self.headers(),
+            data=new_pet,
+            content_type='application/json')
+        assert rv.status_code == 200
+        assert json.loads(rv.data.decode('utf-8')).get('pet')['species'] == "Cat"
+
+        # delete a pet
+        rv = self.app.delete('/pets/' + pet_id,
+            headers=self.headers(),
+            content_type='application/json')
+        assert rv.status_code == 204
+        assert Pet.objects.filter(live=False).count() == 1

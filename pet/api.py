@@ -18,7 +18,7 @@ class PetAPI(MethodView):
 
     def __init__(self):
         self.PETS_PER_PAGE = 10
-        if request.method != 'GET' and not request.json:
+        if (request.method != 'GET' and request.method != 'DELETE') and not request.json:
             abort(400)
 
     def get(self, pet_id):
@@ -98,7 +98,7 @@ class PetAPI(MethodView):
         return jsonify(response), 201
 
     def put(self, pet_id):
-        pet = Pet.objects.filter(external_id=store_id, live=True).first()
+        pet = Pet.objects.filter(external_id=pet_id, live=True).first()
         if not pet:
             return jsonify({}), 404
         pet_json = request.json
