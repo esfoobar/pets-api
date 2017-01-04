@@ -1,6 +1,6 @@
 from store.templates import store_obj
 
-def pet_obj(pet, nostore):
+def pet_obj(pet, nostore=False):
     pet_obj = {
       "id":             pet.external_id,
       "name":           pet.name,
@@ -14,7 +14,7 @@ def pet_obj(pet, nostore):
       ]
     }
     if not nostore:
-        pet_obj[store] = store_obj(pet.store),
+        pet_obj["store"] = store_obj(pet.store),
     return pet_obj
 
 def pets_obj(pets, nostore=False):
