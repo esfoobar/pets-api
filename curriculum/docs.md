@@ -79,8 +79,10 @@
 ### 2.12 Pet Tests
   - Write Tests
 
-### 2.13 Pet searches
+### 2.13 Pets in a store
   - Get all pets in a specific store
+
+### 2.14 Search pets across stores
   - Implementing filters across stores
 
 ### Section 3 - Using Swagger to Document your API
