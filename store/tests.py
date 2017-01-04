@@ -116,6 +116,7 @@ class StoreTest(unittest.TestCase):
         rv = self.app.get('/stores/',
             headers=self.headers(),
             content_type='application/json')
+        print(rv.data)
         assert "next" in str(rv.data)
 
         # get second page of stores

@@ -131,17 +131,16 @@ class PetTest(unittest.TestCase):
 
         # import fixtures
         fixtures(self.db_name, "store", "store/fixtures/stores.json")
-        fixtures(self.db_name, "store", "store/fixtures/stores.json")
+        fixtures(self.db_name, "pet", "pet/fixtures/pets.json")
 
         # get all stores
-        rv = self.app.get('/stores/',
+        rv = self.app.get('/pets/',
             headers=self.headers(),
             content_type='application/json')
         assert "next" in str(rv.data)
 
         # get second page of stores
-        rv = self.app.get('/stores/?page=2',
+        rv = self.app.get('/pets/?page=2',
             headers=self.headers(),
             content_type='application/json')
         assert "previous" in str(rv.data)
-        assert "next" in str(rv.data)
