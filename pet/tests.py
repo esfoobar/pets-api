@@ -123,3 +123,25 @@ class PetTest(unittest.TestCase):
             content_type='application/json')
         assert rv.status_code == 204
         assert Pet.objects.filter(live=False).count() == 1
+
+    def test_pagination(self):
+        # get app up and running
+        self.create_api_app()
+        self.generate_access_token()
+
+        # import fixtures
+        fixtures(self.db_name, "store", "store/fixtures/stores.json")
+        fixtures(self.db_name, "store", "store/fixtures/stores.json")
+
+        # get all stores
+        rv = self.app.get('/stores/',
+            headers=self.headers(),
+            content_type='application/json')
+        assert "next" in str(rv.data)
+
+        # get second page of stores
+        rv = self.app.get('/stores/?page=2',
+            headers=self.headers(),
+            content_type='application/json')
+        assert "previous" in str(rv.data)
+        assert "next" in str(rv.data)
