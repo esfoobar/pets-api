@@ -34,6 +34,10 @@ class PetAPI(MethodView):
                 return jsonify({}), 404
         else:
             pets = Pet.objects.filter(live=True)
+            if "species" in request.args:
+                pets = pets.filter(species=request.args.get('species'))
+            if "breed" in request.args:
+                pets = pets.filter(breed=request.args.get('breed'))
             page = int(request.args.get('page', 1))
             pets = pets.paginate(page=page, per_page=self.PETS_PER_PAGE)
             response = {
