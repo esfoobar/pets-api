@@ -84,6 +84,8 @@
 
 ### 2.14 Search pets across stores
   - Implementing filters across stores
+  - Create a pets_href template to add filters
+  - Add the total count of results
 
 ### Section 3 - Using Swagger to Document your API
 
