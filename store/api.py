@@ -69,6 +69,7 @@ class StoreAPI(MethodView):
             stores = stores.paginate(page=page, per_page=self.STORES_PER_PAGE)
             response = {
                 "result": "ok",
+                "total": stores.total,
                 "links": [
                     {
                         "href": "/stores/?page=%s" % page,

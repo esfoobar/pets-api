@@ -45,13 +45,11 @@ class PetAPI(MethodView):
                 pet_href += "&breed=" + request.args.get('breed')
 
             page = int(request.args.get('page', 1))
-            pets_count = pets.count()
             pets = pets.paginate(page=page, per_page=self.PETS_PER_PAGE)
-
 
             response = {
                 "result": "ok",
-                "count": pets_count,
+                "total": pets.total,
                 "links": [
                     {
                         "href": pet_href % page,
